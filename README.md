@@ -31,15 +31,15 @@ graph TD
     B2 -->|contains| D2[Issue #2]
     B2 -->|contains| D3[...]
 
-    style A fill:#e1f5ff,stroke:#01579b,stroke-width:2px
-    style B1 fill:#fff9c4,stroke:#f57f17,stroke-width:2px
-    style B2 fill:#fff9c4,stroke:#f57f17,stroke-width:2px
-    style B3 fill:#fff9c4,stroke:#f57f17,stroke-width:2px
-    style C1 fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    style C2 fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    style C3 fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    style D1 fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    style D2 fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    style A fill:#e1f5ff,stroke:#01579b,stroke-width:2px,color:#000
+    style B1 fill:#fff9c4,stroke:#f57f17,stroke-width:2px,color:#000
+    style B2 fill:#fff9c4,stroke:#f57f17,stroke-width:2px,color:#000
+    style B3 fill:#fff9c4,stroke:#f57f17,stroke-width:2px,color:#000
+    style C1 fill:#f3e5f5,stroke:#4a148c,stroke-width:2px,color:#000
+    style C2 fill:#f3e5f5,stroke:#4a148c,stroke-width:2px,color:#000
+    style C3 fill:#f3e5f5,stroke:#4a148c,stroke-width:2px,color:#000
+    style D1 fill:#f3e5f5,stroke:#4a148c,stroke-width:2px,color:#000
+    style D2 fill:#f3e5f5,stroke:#4a148c,stroke-width:2px,color:#000
 ```
 
 ### Bucket-Harvest Workflow
@@ -52,12 +52,12 @@ graph LR
     D -->|input| E[Bucket-Harvest<br/>repo_to_issues]
     E -->|collects most<br/>recent 100 issues| F[Output:<br/>100 Recent Issues<br/>Markdown Files]
 
-    style A fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
-    style B fill:#fff9c4,stroke:#f57f17,stroke-width:2px
-    style C fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
-    style D fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
-    style E fill:#fff9c4,stroke:#f57f17,stroke-width:2px
-    style F fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
+    style A fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px,color:#000
+    style B fill:#fff9c4,stroke:#f57f17,stroke-width:2px,color:#000
+    style C fill:#e3f2fd,stroke:#1565c0,stroke-width:2px,color:#000
+    style D fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px,color:#000
+    style E fill:#fff9c4,stroke:#f57f17,stroke-width:2px,color:#000
+    style F fill:#e3f2fd,stroke:#1565c0,stroke-width:2px,color:#000
 ```
 
 **Key Points:**
