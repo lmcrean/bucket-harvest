@@ -11,6 +11,39 @@ Bucket Harvest provides two powerful workflows:
 
 Both workflows use intelligent bucketing and parallel processing to efficiently handle large datasets while respecting GitHub API rate limits.
 
+## Architecture
+
+```mermaid
+graph TD
+    A[GitHub Organization<br/>e.g., google, microsoft, stripe] -->|contains| B1[Repository 1<br/>google/guava]
+    A -->|contains| B2[Repository 2<br/>google/material-design]
+    A -->|contains| B3[Repository 3<br/>google/gson]
+    A -->|contains| B4[...]
+
+    B1 -->|contains| C1[Issue #1<br/>Bug: Feature X broken]
+    B1 -->|contains| C2[Issue #2<br/>Enhancement: Add Y]
+    B1 -->|contains| C3[Issue #3<br/>Documentation update]
+    B1 -->|contains| C4[...]
+
+    B2 -->|contains| D1[Issue #1]
+    B2 -->|contains| D2[Issue #2]
+    B2 -->|contains| D3[...]
+
+    style A fill:#e1f5ff,stroke:#01579b,stroke-width:2px
+    style B1 fill:#fff9c4,stroke:#f57f17,stroke-width:2px
+    style B2 fill:#fff9c4,stroke:#f57f17,stroke-width:2px
+    style B3 fill:#fff9c4,stroke:#f57f17,stroke-width:2px
+    style C1 fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    style C2 fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    style C3 fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    style D1 fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    style D2 fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+```
+
+**Workflow Mapping:**
+- **Org → Repos:** Use `org_to_repos` workflow to analyze all repositories in an organization
+- **Repo → Issues:** Use `repo_to_issues` workflow to collect issues from specific repositories
+
 ## Quick Start
 
 ### Prerequisites
