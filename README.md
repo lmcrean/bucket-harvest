@@ -13,6 +13,8 @@ Both workflows use intelligent bucketing and parallel processing to efficiently 
 
 ## Architecture
 
+### GitHub Data Hierarchy
+
 ```mermaid
 graph TD
     A[GitHub Organization<br/>e.g., google, microsoft, stripe] -->|contains| B1[Repository 1<br/>google/guava]
@@ -40,9 +42,28 @@ graph TD
     style D2 fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
 ```
 
-**Workflow Mapping:**
-- **Org → Repos:** Use `org_to_repos` workflow to analyze all repositories in an organization
-- **Repo → Issues:** Use `repo_to_issues` workflow to collect issues from specific repositories
+### Bucket-Harvest Workflow
+
+```mermaid
+graph LR
+    A[User Chooses<br/>Organization<br/>e.g., 'google'] -->|input| B[Bucket-Harvest<br/>org_to_repos]
+    B -->|analyzes all repos<br/>ranks by activity| C[Output:<br/>Highest Activity Repos<br/>CSV Report]
+    C -->|user reviews| D[User Chooses<br/>Repository<br/>e.g., 'google/guava']
+    D -->|input| E[Bucket-Harvest<br/>repo_to_issues]
+    E -->|collects most<br/>recent 100 issues| F[Output:<br/>100 Recent Issues<br/>Markdown Files]
+
+    style A fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+    style B fill:#fff9c4,stroke:#f57f17,stroke-width:2px
+    style C fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
+    style D fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+    style E fill:#fff9c4,stroke:#f57f17,stroke-width:2px
+    style F fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
+```
+
+**Key Points:**
+- **Green boxes**: User decisions (you choose the org and repo)
+- **Yellow boxes**: Bucket-Harvest automation (tool finds and collects data)
+- **Blue boxes**: Outputs (data delivered to you for analysis)
 
 ## Quick Start
 
