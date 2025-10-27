@@ -11,6 +11,60 @@ Bucket Harvest provides two powerful workflows:
 
 Both workflows use intelligent bucketing and parallel processing to efficiently handle large datasets while respecting GitHub API rate limits.
 
+## Architecture
+
+### GitHub Data Hierarchy
+
+```mermaid
+graph TD
+    A[GitHub Organization<br/>e.g., google, microsoft, stripe] -->|contains| B1[Repository 1<br/>google/guava]
+    A -->|contains| B2[Repository 2<br/>google/material-design]
+    A -->|contains| B3[Repository 3<br/>google/gson]
+    A -->|contains| B4[...]
+
+    B1 -->|contains| C1[Issue #1<br/>Bug: Feature X broken]
+    B1 -->|contains| C2[Issue #2<br/>Enhancement: Add Y]
+    B1 -->|contains| C3[Issue #3<br/>Documentation update]
+    B1 -->|contains| C4[...]
+
+    B2 -->|contains| D1[Issue #1]
+    B2 -->|contains| D2[Issue #2]
+    B2 -->|contains| D3[...]
+
+    style A fill:#e1f5ff,stroke:#01579b,stroke-width:2px
+    style B1 fill:#fff9c4,stroke:#f57f17,stroke-width:2px
+    style B2 fill:#fff9c4,stroke:#f57f17,stroke-width:2px
+    style B3 fill:#fff9c4,stroke:#f57f17,stroke-width:2px
+    style C1 fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    style C2 fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    style C3 fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    style D1 fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    style D2 fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+```
+
+### Bucket-Harvest Workflow
+
+```mermaid
+graph LR
+    A[User Chooses<br/>Organization<br/>e.g., 'google'] -->|input| B[Bucket-Harvest<br/>org_to_repos]
+    B -->|analyzes all repos<br/>ranks by activity| C[Output:<br/>Highest Activity Repos<br/>CSV Report]
+    C -->|user reviews| D[User Chooses<br/>Repository<br/>e.g., 'google/guava']
+    D -->|input| E[Bucket-Harvest<br/>repo_to_issues]
+    E -->|collects most<br/>recent 100 issues| F[Output:<br/>100 Recent Issues<br/>Markdown Files]
+
+    style A fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+    style B fill:#fff9c4,stroke:#f57f17,stroke-width:2px
+    style C fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
+    style D fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+    style E fill:#fff9c4,stroke:#f57f17,stroke-width:2px
+    style F fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
+```
+
+**Key Points:**
+- **Green boxes**: User decisions (you choose the org and repo)
+- **Yellow boxes**: Bucket-Harvest automation (tool finds and collects data)
+- **Blue boxes**: Outputs (data delivered to you for analysis)
+
 ## Quick Start
 
 ### Prerequisites
